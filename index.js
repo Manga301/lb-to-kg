@@ -2,18 +2,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
+let poundToKg;
+
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/index.html');
+   
+    res.render('index', {weightInKg: poundToKg});
+
+    
 });
 
 app.post('/', function(req, res){
     let pound = Number(req.body.pounds);
-    let poundToKg = (pound / 2.205).toFixed(2);
+    poundToKg = (pound / 2.205).toFixed(2);
 
-    res.send(`<h1 style='font-size: 10rem; text-align: center'>${poundToKg}kg</h1>`);
+    // res.send(`<h1 style='font-size: 10rem; text-align: center'>${poundToKg}kg</h1>`);
+    res.redirect('/');
 
 });
 
