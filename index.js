@@ -17,7 +17,7 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
     let pound = Number(req.body.pounds);
-    poundToKg = (pound / 2.205).toFixed(2);
+    poundToKg = `${pound}lb = ${(pound / 2.205).toFixed(2)}kg`;
 
     // res.send(`<h1 style='font-size: 10rem; text-align: center'>${poundToKg}kg</h1>`);
     res.redirect('/');
